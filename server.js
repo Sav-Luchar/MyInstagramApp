@@ -1,5 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const users = require('./routes/api/users');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 const app = express();
 
 //DB Config
@@ -12,6 +15,11 @@ mongoose
     .catch(err=> console.log(err));
 
 //First route
-app.get('/',(req,res) => res.send('The Empress first Instagram App'));
+app.get("/",(req,res) => res.send("The Empress first Instagram App"));
+
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
+
 const port = 4000;
 app.listen(port,() => console.log (`Server successfully running on port ${port}`));
